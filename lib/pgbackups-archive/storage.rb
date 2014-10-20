@@ -23,11 +23,7 @@ class PgbackupsArchive::Storage
   end
 
   def store
-    bucket.files.create :key => @key, :body => @file, :public => false, :encryption => self.encryption
-  end
-
-  def encryption
-    return ENV["PGBACKUPS_SERVER_SIDE_ENCRYPTION"].to_s == "true" ? "AES256" : nil
+    bucket.files.create :key => @key, :body => @file, :public => false, :encryption => "AES256"
   end
 
 end
